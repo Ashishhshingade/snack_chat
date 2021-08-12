@@ -1,0 +1,6 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/example/snackchat/MainActivity.java
+ com.example.snackchat.MainActivity
+com/example/snackchat/BuildConfig.java
+ com.example.snackchat.BuildConfig
