@@ -12,10 +12,6 @@
         "source": "D:\\snack_chat\\snack_chat\\snackchat\\android\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
     },
     {
-        "merged": "D:\\snack_chat\\snack_chat\\snackchat\\build\\app\\intermediates\\res\\merged\\debug\\drawable_launch_background.xml.flat",
-        "source": "D:\\snack_chat\\snack_chat\\snackchat\\android\\app\\src\\main\\res\\drawable\\launch_background.xml"
-    },
-    {
         "merged": "D:\\snack_chat\\snack_chat\\snackchat\\build\\app\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
         "source": "D:\\snack_chat\\snack_chat\\snackchat\\android\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "840703538050",
+    "project_id": "snackchat-cd2ad",
+    "storage_bucket": "snackchat-cd2ad.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840703538050:android:d79036ef82864cfb45d59b",
+        "android_client_info": {
+          "package_name": "com.ashishshingade.snackchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "840703538050-sicpf48qmhghn9jt6q9vi9vdfaiq2dbr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB521cAeXjvg7ceCAOmwX7LlTNz08LXqTg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "840703538050-sicpf48qmhghn9jt6q9vi9vdfaiq2dbr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
