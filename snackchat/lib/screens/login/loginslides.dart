@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:snackchat/models/introslides.dart';
+import 'package:page_indicator/page_indicator.dart';
 
 class LoginInfoSlidesView extends StatefulWidget {
   const LoginInfoSlidesView({Key? key}) : super(key: key);
@@ -15,13 +16,23 @@ class _LoginInfoSlidesViewState extends State<LoginInfoSlidesView> {
     return Scaffold(
       body: Container(
         //color: Colors.black,
-        child: PageView(
-          scrollDirection: Axis.horizontal,
-          children: const <Widget>[
-            SlideItems(index: 0),
-            SlideItems(index: 1),
-            SlideItems(index: 2)
-          ],
+        child: PageIndicatorContainer(
+          length: 5,
+          indicatorColor: Colors.grey,
+          indicatorSelectorColor: Colors.blue,
+          shape: IndicatorShape.circle(size: 12),
+          child: PageView(
+            controller: _pageController,
+            scrollDirection: Axis.horizontal,
+            children: const <Widget>[
+              //for(int i =0 , i<5,i++){SlideItems(index: i,)}
+              SlideItems(index: 0),
+              SlideItems(index: 1),
+              SlideItems(index: 2),
+              SlideItems(index: 3),
+              SlideItems(index: 4)
+            ],
+          ),
         ),
       ),
     );

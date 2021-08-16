@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:snackchat/screens/login/sign_in.dart';
 
 class Slides {
   String imgURL;
@@ -15,13 +16,21 @@ final List loginSlideList = [
       title: 'Chat in groups',
       description: 'just sign in and talk in groups and have fun.'),
   Slides(
-      imgURL: 'assets/images/burger.png',
-      title: 'burger',
-      description: 'Eating burger with fries feels like talking about it'),
-  Slides(
       imgURL: 'assets/images/pizza.png',
       title: 'Pizza',
-      description: 'Eating Pizza feels like talking about it?')
+      description: 'Eating Pizza feels like talking about it?'),
+  Slides(
+      imgURL: 'assets/images/eating.png',
+      title: 'Eating somethin?',
+      description: 'Feels like talking about it?'),
+  Slides(
+      imgURL: 'assets/images/recipe.png',
+      title: 'Recipe',
+      description: 'Have awesome recipe to share ? share here !!'),
+  Slides(
+      imgURL: 'assets/images/snackdate.png',
+      title: 'Snack Date?',
+      description: 'Have your snack date here !!')
 ];
 
 class SlideItems extends StatelessWidget {
@@ -30,6 +39,7 @@ class SlideItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -37,55 +47,67 @@ class SlideItems extends StatelessWidget {
         elevation: 0.0,
         actions: [
           TextButton(
-              onPressed: () {},
-              child: index == 2 ? Text('login/sign up') : Text('skip'))
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SignIn(),
+                    ));
+              },
+              child: index == loginSlideList.length
+                  ? Text('login/sign up')
+                  : Text('skip'))
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-              child: Center(
-            child: Container(
-              height: MediaQuery.of(context).size.height / 2,
-              width: MediaQuery.of(context).size.width / 2,
-              child: Image(
-                image: AssetImage(loginSlideList[index].imgURL),
+      body: Container(
+        padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+                child: Center(
+              child: Container(
+                child: Image(
+                    image: AssetImage(
+                      loginSlideList[index].imgURL,
+                    ),
+                    width: size.width * 0.75),
               ),
-            ),
-          )),
-          Expanded(
-            child: Container(
-              height: MediaQuery.of(context).size.height / 4,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      loginSlideList[index].title,
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(loginSlideList[index].description),
-                  ],
+            )),
+            SizedBox(height: 30),
+            Expanded(
+              child: Container(
+                height: MediaQuery.of(context).size.height / 4,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        loginSlideList[index].title,
+                        textAlign: TextAlign.left,
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      SizedBox(height: 10),
+                      Text(loginSlideList[index].description),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          //  Row(
+            //  Row(
 
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     for(int i=0 ; i < index ;i++)
-          //       index==i?Dots(true):Dots(false)
-          //   ],
-          // )
-        ],
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     for(int i=0 ; i < index ;i++)
+            //       index==i?Dots(true):Dots(false)
+            //   ],
+            // )
+          ],
+        ),
       ),
     );
   }
