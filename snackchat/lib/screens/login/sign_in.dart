@@ -5,7 +5,9 @@ import 'package:snackchat/shared/constants.dart';
 import 'package:snackchat/shared/loading.dart';
 
 class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+  final Function toggleView; //declaring toggleView
+  SignIn(
+      {required this.toggleView}); //constructor to get toggleview from authenticate
 
   @override
   _SignInState createState() => _SignInState();
@@ -29,82 +31,84 @@ class _SignInState extends State<SignIn> {
     return loading
         ? Loading()
         : Scaffold(
-            body: SingleChildScrollView(
-            child: Container(
-              width: double
-                  .infinity, //I want to be as big as my parent allows (double.infinity)
-              height:
-                  size.height, //I want to be as big as the screen (MediaQuery).
-              padding: EdgeInsets.zero,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(height: 20),
-                  Expanded(
-                      child: Center(
-                    child: Container(
-                      child: Image(
-                        image: AssetImage('assets/images/login.png'),
-                        width: size.width * 0.75,
+            body: Background(
+            child: SingleChildScrollView(
+              child: Container(
+                width: double
+                    .infinity, //I want to be as big as my parent allows (double.infinity)
+                height: size
+                    .height, //I want to be as big as the screen (MediaQuery).
+                padding: EdgeInsets.zero,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 50),
+                    Expanded(
+                        child: Center(
+                      child: Container(
+                        child: Image(
+                          image: AssetImage('assets/images/login.png'),
+                          width: size.width * 0.85,
+                        ),
                       ),
-                    ),
-                  )),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-                    child: Form(
-                        key: _formKey,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            TextFormField(
-                              cursorColor: kPrimaryColor,
-                              decoration: textInputDecoration.copyWith(
-                                hintText: 'eamil Id',
-                                prefixIcon: Icon(
-                                  Icons.person,
-                                  color: kPrimaryColor,
-                                ),
-                              ),
-                              validator: (val) =>
-                                  val!.isEmpty ? 'Enter an email adress' : null,
-                              onChanged: (val) {
-                                setState(() => email = val);
-                              },
-                            ),
-                            SizedBox(height: 10),
-                            TextFormField(
-                              obscureText: true,
-                              cursorColor: kPrimaryColor,
-                              decoration: textInputDecoration.copyWith(
-                                  hintText: 'password',
+                    )),
+                    Container(
+                      padding:
+                          EdgeInsets.fromLTRB(50, 0, 50, 30),
+                      child: Form(
+                          key: _formKey,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              TextFormField(
+                                cursorColor: kPrimaryColor,
+                                decoration: textInputDecoration.copyWith(
+                                  hintText: 'email Id',
                                   prefixIcon: Icon(
-                                    Icons.lock,
+                                    Icons.person,
                                     color: kPrimaryColor,
-                                  )),
-                              validator: (val) => val!.length < 6
-                                  ? 'Password must be of 6 char'
-                                  : null,
-                              onChanged: (val) {
-                                setState(() => password = val);
-                              },
-                            ),
-                            SizedBox(height: 5),
-                            Container(
-                              margin: EdgeInsets.symmetric(vertical: 10),
-                              width: size.width * 0.8,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(29),
-                                child: FlatButton(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 20, horizontal: 40),
-                                  color: kPrimaryColor,
-                                  onPressed: () async {
-                                    if (_formKey.currentState!.validate()) {
-                                      setState(() {
-                                        loading = true;
-                                        dynamic result =
-                                            _auth.signInWithEmailAndPassword(
+                                  ),
+                                ),
+                                validator: (val) => val!.isEmpty
+                                    ? 'Enter an email address'
+                                    : null,
+                                onChanged: (val) {
+                                  setState(() => email = val);
+                                },
+                              ),
+                              SizedBox(height: 10),
+                              TextFormField(
+                                obscureText: true,
+                                cursorColor: kPrimaryColor,
+                                decoration: textInputDecoration.copyWith(
+                                    hintText: 'password',
+                                    prefixIcon: Icon(
+                                      Icons.lock,
+                                      color: kPrimaryColor,
+                                    )),
+                                validator: (val) => val!.length < 6
+                                    ? 'Password must be of 6 char'
+                                    : null,
+                                onChanged: (val) {
+                                  setState(() => password = val);
+                                },
+                              ),
+                              SizedBox(height: 5),
+                              Container(
+                                margin: EdgeInsets.symmetric(vertical: 10),
+                                width: size.width * 0.8,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(29),
+                                  child: FlatButton(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 20, horizontal: 40),
+                                    color: kPrimaryColor,
+                                    onPressed: () async {
+                                      if (_formKey.currentState!.validate()) {
+                                        setState(() => loading = true);
+                                        dynamic result = await _auth
+                                            .signInWithEmailAndPassword(
                                                 email, password);
                                         if (result == null) {
                                           setState(() {
@@ -112,29 +116,37 @@ class _SignInState extends State<SignIn> {
                                             error =
                                                 'Could not sign in with those credentials';
                                           });
+                                        } else {
+                                          setState(() {
+                                            loading = false;
+                                          });
                                         }
-                                      });
-                                    }
-                                  },
-                                  child: Text(
-                                    'LOGIN',
-                                    style: TextStyle(color: kPrimaryLightColor),
+                                        //print(error);
+                                        error = '';
+                                      }
+                                    },
+                                    child: Text(
+                                      'LOGIN',
+                                      style: TextStyle(
+                                          color: kPrimaryLightColor),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                            FlatButton(
+                              FlatButton(
                                 child: Text(
                                   "New user? Create Account",
                                   style: TextStyle(
                                       fontSize: 13, color: Colors.blue[700]),
                                 ),
-                                onPressed: () async {})
-                          ],
-                        )),
-                  ),
-                  SizedBox(height: 100)
-                ],
+                                onPressed: () => widget.toggleView(),
+                              )
+                            ],
+                          )),
+                    ),
+                    SizedBox(height: 30)
+                  ],
+                ),
               ),
             ),
           ));

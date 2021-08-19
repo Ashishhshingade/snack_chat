@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:snackchat/screens/login/sign_in.dart';
+import 'package:snackchat/screens/login/authenticate.dart';
 
 class Slides {
   String imgURL;
@@ -42,23 +42,6 @@ class SlideItems extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0.0,
-        actions: [
-          TextButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SignIn(),
-                    ));
-              },
-              child: index == loginSlideList.length
-                  ? Text('login/sign up')
-                  : Text('skip'))
-        ],
-      ),
       body: Container(
         padding: EdgeInsets.symmetric(vertical: 30, horizontal: 10),
         child: Column(

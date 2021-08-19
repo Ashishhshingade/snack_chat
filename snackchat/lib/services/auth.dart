@@ -6,7 +6,7 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   //creat user obj based on firebase user obj
-  CustomUser? _userFromFirebaseUser(User? user) {
+  CustomUser? _userFromFirebaseUser(User user) {
     return user != null ? CustomUser(uid: user.uid, emailId: '') : null;
   }
 
@@ -22,7 +22,8 @@ class AuthService {
   Future? signInAnon() async {
     try {
       UserCredential userCredential = await _auth.signInAnonymously();
-      print(userCredential);
+      return _userFromFirebaseUser(userCredential.user!);
+      //print(userCredential);
     } catch (e) {
       print(e.toString());
       return null;
@@ -34,9 +35,9 @@ class AuthService {
     try {
       UserCredential result = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      print(result.toString());
+      //print(result.toString());
       User? user = result.user;
-      return _userFromFirebaseUser(user);
+      return _userFromFirebaseUser(user!);
     } catch (e) {
       print(e.toString());
       return null;
@@ -48,9 +49,9 @@ class AuthService {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      print(result.user);
+      //print(result.user);
       User? user = result.user;
-      return _userFromFirebaseUser(user);
+      return _userFromFirebaseUser(user!);
     } catch (e) {
       print(e.toString());
       return null;

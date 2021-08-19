@@ -1,4 +1,6 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:snackchat/services/auth.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -8,12 +10,21 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Drawer(),
+      backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        title: Text('Home'),
+
+        centerTitle: true,
+        backgroundColor: Colors.grey[850],
+        elevation: 0.0,
+        title: Text('SnackChat',textAlign: TextAlign.center,),
+        actions: [IconButton(onPressed: (){}, icon: Icon(Icons.notifications))],
       ),
+      body: Container(child: TextButton(onPressed: (){_auth.signOut();}, child: Text('sign out'),)),
     );
   }
 }
