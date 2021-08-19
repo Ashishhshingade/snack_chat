@@ -11,6 +11,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   AuthService _auth = AuthService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,10 +22,19 @@ class _HomeState extends State<Home> {
         centerTitle: true,
         backgroundColor: Colors.grey[850],
         elevation: 0.0,
-        title: Text('SnackChat',textAlign: TextAlign.center,),
-        actions: [IconButton(onPressed: (){}, icon: Icon(Icons.notifications))],
+        title: Text('SnackChat', textAlign: TextAlign.center,),
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.notifications))
+        ],
       ),
-      body: Container(child: TextButton(onPressed: (){_auth.signOut();}, child: Text('sign out'),)),
+      body: Container(padding: EdgeInsets.all(20),
+          child: Column(children: [
+            ListTile(tileColor: Colors.white,
+              leading: CircleAvatar(),
+              title: Text('pizza'),
+              subtitle: Text('i just ate pizza'),),
+            TextButton(onPressed: (){_auth.signOut();}, child: Text('signout'))
+          ],)),
     );
   }
 }

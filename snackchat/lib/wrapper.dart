@@ -21,10 +21,5 @@ class _WrapperState extends State<Wrapper> {
     print(user);
     print('wrapper class is executing');
 
-    if (user == null) {
-      return Authenticate();
-    } else {
-      return Home();
-    }
-  }
-}
+    return user==null?LoginInfoSlidesView():Home();
+}}

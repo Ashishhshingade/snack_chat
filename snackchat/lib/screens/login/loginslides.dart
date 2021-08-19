@@ -14,6 +14,12 @@ class _LoginInfoSlidesViewState extends State<LoginInfoSlidesView> {
   @override
   Widget build(BuildContext context) {
     final PageController _pageController = PageController(initialPage: 0);
+    int _currentPage=0;
+
+    void _onPageChanged(int index) {
+      _currentPage = index;
+    }
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -37,20 +43,25 @@ class _LoginInfoSlidesViewState extends State<LoginInfoSlidesView> {
           indicatorColor: Colors.grey,
           indicatorSelectorColor: Colors.blue,
           shape: IndicatorShape.circle(size: 12),
-          child: PageView(
+          child: PageView.builder(
             controller: _pageController,
+            onPageChanged: _onPageChanged,
             scrollDirection: Axis.horizontal,
-            children: const <Widget>[
-              //for(int i =0 , i<5,i++){SlideItems(index: i,)}
-              SlideItems(index: 0),
-              SlideItems(index: 1),
-              SlideItems(index: 2),
-              SlideItems(index: 3),
-              SlideItems(index: 4)
-            ],
+            itemCount: loginSlideList.length,
+            itemBuilder: (BuildContext context, int index) =>SlideItems(index: index)
+            // children: const <Widget>[
+            //   //for(int i =0 , i<5,i++){SlideItems(index: i,)}
+            //   SlideItems(index: 0),
+            //   SlideItems(index: 1),
+            //   SlideItems(index: 2),
+            //   SlideItems(index: 3),
+            //   SlideItems(index: 4)
+            // ],
           ),
         ),
       ),
     );
   }
+
+
 }

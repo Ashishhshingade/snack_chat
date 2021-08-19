@@ -24,6 +24,7 @@ class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
 
   bool loading = false;
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -33,10 +34,10 @@ class _RegisterState extends State<Register> {
             body: Background(
             child: SingleChildScrollView(
               child: Container(
-                width: double
-                    .infinity, //I want to be as big as my parent allows (double.infinity)
-                height: size
-                    .height, //I want to be as big as the screen (MediaQuery).
+                width: double.infinity,
+                //I want to be as big as my parent allows (double.infinity)
+                height: size.height,
+                //I want to be as big as the screen (MediaQuery).
                 padding: EdgeInsets.zero,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -115,6 +116,12 @@ class _RegisterState extends State<Register> {
                                             loading = false;
                                             error =
                                                 'Could not sign in with those credentials';
+                                          });
+                                        } else {
+                                          setState(() {
+                                            Navigator.pop(context);//necessary step to remove this page from the stack
+                                            //otherwise sign page will be shown on the screen
+                                            loading = false;
                                           });
                                         }
                                       }

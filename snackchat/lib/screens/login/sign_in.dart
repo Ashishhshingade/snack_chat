@@ -34,10 +34,10 @@ class _SignInState extends State<SignIn> {
             body: Background(
             child: SingleChildScrollView(
               child: Container(
-                width: double
-                    .infinity, //I want to be as big as my parent allows (double.infinity)
-                height: size
-                    .height, //I want to be as big as the screen (MediaQuery).
+                width: double.infinity,
+                //I want to be as big as my parent allows (double.infinity)
+                height: size.height,
+                //I want to be as big as the screen (MediaQuery).
                 padding: EdgeInsets.zero,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -54,8 +54,7 @@ class _SignInState extends State<SignIn> {
                       ),
                     )),
                     Container(
-                      padding:
-                          EdgeInsets.fromLTRB(50, 0, 50, 30),
+                      padding: EdgeInsets.fromLTRB(50, 0, 50, 30),
                       child: Form(
                           key: _formKey,
                           child: Column(
@@ -118,6 +117,9 @@ class _SignInState extends State<SignIn> {
                                           });
                                         } else {
                                           setState(() {
+                                            Navigator.pop(
+                                                context); //necessary step to remove this page from the stack
+                                            //otherwise sign page will be shown on the screen
                                             loading = false;
                                           });
                                         }
@@ -127,8 +129,8 @@ class _SignInState extends State<SignIn> {
                                     },
                                     child: Text(
                                       'LOGIN',
-                                      style: TextStyle(
-                                          color: kPrimaryLightColor),
+                                      style:
+                                          TextStyle(color: kPrimaryLightColor),
                                     ),
                                   ),
                                 ),

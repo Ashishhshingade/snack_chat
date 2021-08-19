@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:snackchat/models/user.dart';
 
@@ -59,9 +61,9 @@ class AuthService {
   }
 
   //sign out
-  Future? signOut() async {
+  Future signOut()  async {
     try {
-      return _auth.signOut();
+       return await _auth.signOut();
     } catch (e) {
       print(e.toString());
       return null;
