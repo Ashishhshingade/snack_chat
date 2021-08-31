@@ -9,7 +9,9 @@ class AuthService {
 
   //creat user obj based on firebase user obj
   CustomUser? _userFromFirebaseUser(User user) {
-    return user != null ? CustomUser(uid: user.uid, emailId: '') : null;
+    return user != null
+        ? CustomUser(uid: user.uid, emailId: user.email.toString())
+        : null;
   }
 
   //auth change user stream
@@ -61,9 +63,9 @@ class AuthService {
   }
 
   //sign out
-  Future signOut()  async {
+  Future signOut() async {
     try {
-       return await _auth.signOut();
+      return await _auth.signOut();
     } catch (e) {
       print(e.toString());
       return null;

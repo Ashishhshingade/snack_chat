@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:snackchat/screens/home/navgation_drawer.dart';
 import 'package:snackchat/services/auth.dart';
 
 class Home extends StatefulWidget {
@@ -15,26 +16,38 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
+      drawer: AppDrawer(),
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
-
         centerTitle: true,
         backgroundColor: Colors.grey[850],
         elevation: 0.0,
-        title: Text('SnackChat', textAlign: TextAlign.center,),
+        title: Text(
+          'SnackChat',
+          textAlign: TextAlign.center,
+        ),
         actions: [
           IconButton(onPressed: () {}, icon: Icon(Icons.notifications))
         ],
       ),
-      body: Container(padding: EdgeInsets.all(20),
-          child: Column(children: [
-            ListTile(tileColor: Colors.white,
-              leading: CircleAvatar(),
-              title: Text('pizza'),
-              subtitle: Text('i just ate pizza'),),
-            TextButton(onPressed: (){_auth.signOut();}, child: Text('signout'))
-          ],)),
+      body: Container(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            children: [
+              ListTile(
+                tileColor: Colors.white,
+                trailing: Icon(Icons.keyboard_arrow_right),
+                leading: CircleAvatar(),
+                title: Text('pizza'),
+                subtitle: Text('i just ate pizza'),
+              ),
+              TextButton(
+                  onPressed: () {
+                    _auth.signOut();
+                  },
+                  child: Text('signout'))
+            ],
+          )),
     );
   }
 }
