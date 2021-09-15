@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:snackchat/models/user.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+  final String emailId;
+  const Profile({Key? key, required this.emailId}) : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
 }
 
 class _ProfileState extends State<Profile> {
-  int ninjaLevel = 0;
-
   @override
   Widget build(BuildContext context) {
+    //get info of user to show personalised data
+
     return Scaffold(
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
-        title: Text('Ninja ID'),
+        title: Text('Snacker ID'),
         centerTitle: true,
         backgroundColor: Colors.grey[850],
         elevation: 0.0,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          setState(() {
-            ninjaLevel += 1;
-          });
+          setState(() {});
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.add_a_photo),
         backgroundColor: Colors.grey[800],
       ),
       body: Padding(
@@ -45,15 +46,15 @@ class _ProfileState extends State<Profile> {
               color: Colors.grey,
             ),
             Text(
-              'Name',
+              'Username',
               style:
-                  TextStyle(letterSpacing: 2, color: Colors.grey, fontSize: 14),
+                  TextStyle(letterSpacing: 2, color: Colors.grey, fontSize: 16),
             ),
             SizedBox(
               height: 10.0,
             ),
             Text(
-              'Alisha',
+              'username',
               style: TextStyle(
                   color: Colors.amberAccent,
                   fontWeight: FontWeight.bold,
@@ -63,15 +64,15 @@ class _ProfileState extends State<Profile> {
               height: 30,
             ),
             Text(
-              'current ninja level',
+              'Age',
               style:
-                  TextStyle(letterSpacing: 2, color: Colors.grey, fontSize: 14),
+                  TextStyle(letterSpacing: 2, color: Colors.grey, fontSize: 16),
             ),
             SizedBox(
               height: 10.0,
             ),
             Text(
-              '$ninjaLevel',
+              '0',
               style: TextStyle(
                   color: Colors.amberAccent,
                   fontWeight: FontWeight.bold,
@@ -92,10 +93,11 @@ class _ProfileState extends State<Profile> {
                   width: 10,
                 ),
                 Text(
-                  'ashishshingade001@gmail.com',
+                  widget.emailId,
                   style: TextStyle(
                     color: Colors.grey,
                     letterSpacing: 2,
+                    fontSize: 16,
                   ),
                 )
               ],

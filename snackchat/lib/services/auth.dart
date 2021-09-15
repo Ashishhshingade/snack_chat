@@ -1,7 +1,6 @@
-import 'dart:ffi';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:snackchat/models/user.dart';
+import 'package:snackchat/services/database.dart';
 
 class AuthService {
   //creating instance of Firebase auth
@@ -55,7 +54,11 @@ class AuthService {
           email: email, password: password);
       //print(result.user);
       User? user = result.user;
-      return _userFromFirebaseUser(user!);
+
+      //creating a new doc in users collection with uid
+      await DatabaseService(user!.uid)
+          .updateUsersData('username', '0', user.email.toString());
+      return _userFromFirebaseUser(user);
     } catch (e) {
       print(e.toString());
       return null;

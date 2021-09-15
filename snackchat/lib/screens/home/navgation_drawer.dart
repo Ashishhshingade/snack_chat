@@ -4,6 +4,7 @@ import 'package:snackchat/models/user.dart';
 import 'package:snackchat/screens/home/profile/profile.dart';
 import 'package:snackchat/services/auth.dart';
 import 'package:snackchat/shared/under_construct.dart';
+import 'package:snackchat/services/database.dart';
 
 class AppDrawer extends StatefulWidget {
   const AppDrawer({Key? key, child}) : super(key: key);
@@ -46,7 +47,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         ),
                         SizedBox(width: 10),
                         Text(
-                          'Name',
+                          'username',
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         )
                       ],
@@ -73,8 +74,12 @@ class _AppDrawerState extends State<AppDrawer> {
                     color: Colors.white,
                   )),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Profile()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Profile(
+                              emailId: user.emailId.toString(),
+                            )));
                 //Navigator.pop(context);
               },
             ),

@@ -119,7 +119,8 @@ class _RegisterState extends State<Register> {
                                           });
                                         } else {
                                           setState(() {
-                                            Navigator.pop(context);//necessary step to remove this page from the stack
+                                            Navigator.pop(
+                                                context); //necessary step to remove this page from the stack
                                             //otherwise sign page will be shown on the screen
                                             loading = false;
                                           });
