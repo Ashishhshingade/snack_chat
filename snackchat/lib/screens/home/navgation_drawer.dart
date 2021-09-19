@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:snackchat/models/user.dart';
-import 'package:snackchat/screens/home/profile/profile.dart';
+import 'package:snackchat/screens/home/profile.dart';
 import 'package:snackchat/services/auth.dart';
 import 'package:snackchat/shared/under_construct.dart';
 import 'package:snackchat/services/database.dart';
